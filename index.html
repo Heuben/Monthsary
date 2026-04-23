@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Cute Monthsary! 🐾</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="p-4 md:p-8">
+    <div id="cursor-follower" class="custom-cursor"></div>
+
+    <!-- Header Section -->
+    <header class="text-center mb-12 relative">
+        <div class="absolute -top-10 left-1/2 -translate-x-1/2 opacity-10 pointer-events-none">
+            <i class="fas fa-paw text-9xl text-pink-300"></i>
+        </div>
+        <h1 class="text-4xl md:text-6xl text-pink-500 mb-2 floating">Happy Monthsary! 🐾</h1>
+        <p class="text-gray-600 text-lg md:text-xl">Every day with you is purr-fect! ✨</p>
+        <div class="mt-4 flex justify-center gap-4">
+            <span class="bg-pink-100 text-pink-600 px-4 py-2 rounded-full text-sm font-semibold">❤️ Love</span>
+            <span class="bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-semibold">🐾 Cats</span>
+            <span class="bg-yellow-100 text-yellow-600 px-4 py-2 rounded-full text-sm font-semibold">✨ Forever</span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto">
+        <!-- Interactive Cat Area -->
+        <section class="mb-16 text-center">
+            <div class="relative inline-block group mb-8">
+                <div class="w-48 h-48 bg-pink-200 rounded-full flex items-center justify-center text-8xl cursor-pointer hover:bg-pink-300 transition-colors duration-300 relative overflow-hidden"
+                    onclick="spawnHearts(event)">
+                    🐱
+                </div>
+                <div
+                    class="absolute -bottom-4 -right-4 bg-white p-3 rounded-2xl shadow-lg border-2 border-pink-100 group-hover:scale-110 transition-transform">
+                    <p class="text-sm font-bold text-pink-500">Click me for love!</p>
+                </div>
+            </div>
+
+            <div class="mt-8">
+                <button onclick="showSurprise(event)"
+                    class="bg-gradient-to-r from-pink-400 to-rose-400 text-white px-8 py-4 rounded-full font-bold text-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 flex items-center gap-2 mx-auto">
+                    <i class="fas fa-gift"></i> Click for a Surprise!
+                </button>
+                <div id="surprise-message"
+                    class="mt-6 h-8 text-pink-600 font-semibold italic opacity-0 transition-opacity duration-500"></div>
+            </div>
+        </section>
+
+        <!-- Love Mission Generator -->
+        <section class="mb-16">
+            <div class="mission-card max-w-2xl mx-auto rounded-3xl p-6 md:p-8 shadow-xl border border-pink-100">
+                <h2 class="text-3xl text-center text-pink-500 mb-3 flex items-center justify-center gap-2">
+                    <i class="fas fa-wand-magic-sparkles"></i> Love Mission Generator
+                </h2>
+                <p class="text-center text-gray-600 mb-6">Spin a cute mission and complete it together today!</p>
+
+                <div class="text-center mb-6">
+                    <button id="mission-button"
+                        class="bg-gradient-to-r from-fuchsia-400 to-pink-500 text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300">
+                        <i class="fas fa-heart-circle-bolt"></i> Give Us A Mission
+                    </button>
+                </div>
+
+                <div id="mission-result"
+                    class="mission-result min-h-[4rem] bg-white/80 rounded-2xl p-4 text-center text-lg text-pink-600 font-semibold border border-pink-100">
+                    Press the button to reveal today's adorable quest.
+                </div>
+
+                <div class="mt-4 text-center text-sm text-gray-500">
+                    Missions completed together: <span id="mission-count" class="font-bold text-pink-500">0</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Games Corner -->
+        <section class="mb-16">
+            <h2 class="text-3xl text-center text-pink-500 mb-6 flex items-center justify-center gap-2">
+                <i class="fas fa-gamepad"></i> Games Corner <i class="fas fa-star"></i>
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="game-card rounded-3xl p-6 border border-pink-100 shadow-lg">
+                    <h3 class="text-2xl text-pink-500 mb-2">Catch The Heart</h3>
+                    <p class="text-gray-600 mb-4">Tap hearts for 10 seconds. How many can you catch?</p>
+                    <button id="start-heart-game"
+                        class="bg-pink-500 text-white px-5 py-2 rounded-full font-semibold hover:bg-pink-600 transition-colors">
+                        Start Game
+                    </button>
+                    <p class="mt-3 text-sm text-gray-600">Score: <span id="heart-score" class="font-bold text-pink-500">0</span> |
+                        Time: <span id="heart-time" class="font-bold text-pink-500">10</span>s</p>
+                    <p id="heart-result" class="mt-2 text-pink-500 font-semibold min-h-[1.5rem]"></p>
+                    <div id="heart-arena" class="heart-arena mt-4 rounded-2xl"></div>
+                </div>
+
+                <div class="game-card rounded-3xl p-6 border border-pink-100 shadow-lg">
+                    <h3 class="text-2xl text-pink-500 mb-2">Love Guess</h3>
+                    <p class="text-gray-600 mb-4">Guess a secret love number from 1 to 20.</p>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <input id="guess-input" type="number" min="1" max="20" placeholder="1-20"
+                            class="px-3 py-2 rounded-xl border border-pink-200 focus:outline-none focus:ring-2 focus:ring-pink-300 w-28">
+                        <button id="guess-button"
+                            class="bg-fuchsia-500 text-white px-4 py-2 rounded-full font-semibold hover:bg-fuchsia-600 transition-colors">
+                            Guess
+                        </button>
+                        <button id="new-guess-game"
+                            class="bg-white text-pink-500 px-4 py-2 rounded-full font-semibold border border-pink-200 hover:bg-pink-50 transition-colors">
+                            New Number
+                        </button>
+                    </div>
+                    <p id="guess-feedback" class="mt-4 text-pink-500 font-semibold min-h-[1.5rem]">Make your first guess!</p>
+                    <p class="text-sm text-gray-600">Attempts: <span id="guess-attempts" class="font-bold text-pink-500">0</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Couple Lab -->
+        <section class="mb-16">
+            <div class="couple-card max-w-4xl mx-auto rounded-3xl p-6 md:p-8 border border-pink-100 shadow-xl">
+                <h2 class="text-3xl text-center text-pink-500 mb-3 flex items-center justify-center gap-2">
+                    <i class="fas fa-heart"></i> Couple Lab <i class="fas fa-heart"></i>
+                </h2>
+                <p class="text-center text-gray-600 mb-6">A playful space for both of you: check your love vibe and keep tiny promises.</p>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-white/80 rounded-2xl p-4 border border-pink-100">
+                        <h3 class="text-xl text-pink-500 mb-3">Love Meter</h3>
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <input id="name-one" type="text" placeholder="Your name"
+                                class="px-3 py-2 rounded-xl border border-pink-200 focus:outline-none focus:ring-2 focus:ring-pink-300 flex-1 min-w-[130px]">
+                            <input id="name-two" type="text" placeholder="Partner name"
+                                class="px-3 py-2 rounded-xl border border-pink-200 focus:outline-none focus:ring-2 focus:ring-pink-300 flex-1 min-w-[130px]">
+                        </div>
+                        <button id="calculate-love"
+                            class="bg-gradient-to-r from-pink-500 to-rose-500 text-white px-4 py-2 rounded-full font-semibold">
+                            Calculate Love %
+                        </button>
+                        <div class="love-meter-track mt-4">
+                            <div id="love-meter-fill" class="love-meter-fill">0%</div>
+                        </div>
+                        <p id="love-meter-message" class="mt-3 text-pink-500 font-semibold min-h-[1.5rem]">Enter both names to begin.</p>
+                    </div>
+
+                    <div class="bg-white/80 rounded-2xl p-4 border border-pink-100">
+                        <h3 class="text-xl text-pink-500 mb-3">Promise Notes</h3>
+                        <div class="flex gap-2">
+                            <input id="promise-input" type="text" maxlength="120" placeholder="I promise to..."
+                                class="px-3 py-2 rounded-xl border border-pink-200 focus:outline-none focus:ring-2 focus:ring-pink-300 flex-1">
+                            <button id="add-promise"
+                                class="bg-fuchsia-500 text-white px-4 py-2 rounded-full font-semibold">
+                                Add
+                            </button>
+                        </div>
+                        <ul id="promise-list" class="mt-4 space-y-2 text-gray-700"></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- More To Do Together -->
+        <section class="mb-16">
+            <h2 class="text-3xl text-center text-pink-500 mb-6 flex items-center justify-center gap-2">
+                <i class="fas fa-list-check"></i> More To Do Together <i class="fas fa-sparkles"></i>
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="todo-card rounded-3xl p-5 border border-pink-100 shadow-lg">
+                    <h3 class="text-xl text-pink-500 mb-2">Date Planner Wheel</h3>
+                    <p class="text-gray-600 mb-3">Tap to get a random date mood, activity, and snack combo.</p>
+                    <button id="spin-date-plan"
+                        class="bg-gradient-to-r from-rose-500 to-pink-500 text-white px-4 py-2 rounded-full font-semibold">
+                        Spin Date Plan
+                    </button>
+                    <p id="date-plan-result" class="mt-4 text-pink-500 font-semibold min-h-[2rem]">Your next date plan appears here.</p>
+                </div>
+
+                <div class="todo-card rounded-3xl p-5 border border-pink-100 shadow-lg">
+                    <h3 class="text-xl text-pink-500 mb-2">Mood Sync</h3>
+                    <p class="text-gray-600 mb-3">How are you both feeling right now?</p>
+                    <div class="grid grid-cols-2 gap-2">
+                        <select id="mood-one" class="px-3 py-2 rounded-xl border border-pink-200">
+                            <option value="">You</option>
+                            <option value="happy">Happy</option>
+                            <option value="tired">Tired</option>
+                            <option value="stressed">Stressed</option>
+                            <option value="romantic">Romantic</option>
+                            <option value="playful">Playful</option>
+                        </select>
+                        <select id="mood-two" class="px-3 py-2 rounded-xl border border-pink-200">
+                            <option value="">Partner</option>
+                            <option value="happy">Happy</option>
+                            <option value="tired">Tired</option>
+                            <option value="stressed">Stressed</option>
+                            <option value="romantic">Romantic</option>
+                            <option value="playful">Playful</option>
+                        </select>
+                    </div>
+                    <button id="sync-mood"
+                        class="mt-3 bg-fuchsia-500 text-white px-4 py-2 rounded-full font-semibold">
+                        Get Sync Idea
+                    </button>
+                    <p id="mood-result" class="mt-3 text-pink-500 font-semibold min-h-[2rem]">Pick two moods to get a sweet suggestion.</p>
+                </div>
+
+                <div class="todo-card rounded-3xl p-5 border border-pink-100 shadow-lg md:col-span-2">
+                    <h3 class="text-xl text-pink-500 mb-2">Couple Bingo</h3>
+                    <p class="text-gray-600 mb-3">Complete tiny relationship moments and try to fill all squares.</p>
+                    <div class="mb-3">
+                        <button id="reset-bingo"
+                            class="bg-white text-pink-500 px-4 py-2 rounded-full font-semibold border border-pink-200 hover:bg-pink-50 transition-colors">
+                            Reset Bingo
+                        </button>
+                    </div>
+                    <div id="bingo-board" class="bingo-board"></div>
+                    <p class="mt-3 text-sm text-gray-600">Completed: <span id="bingo-count" class="font-bold text-pink-500">0</span>/9</p>
+                </div>
+
+                <div class="todo-card rounded-3xl p-5 border border-pink-100 shadow-lg md:col-span-2">
+                    <h3 class="text-xl text-pink-500 mb-2">Love Letter Capsule</h3>
+                    <p class="text-gray-600 mb-3">Write short notes for each other and open them anytime.</p>
+                    <div class="flex flex-col md:flex-row gap-2">
+                        <input id="capsule-title" type="text" maxlength="40" placeholder="Title (e.g. For bad days)"
+                            class="px-3 py-2 rounded-xl border border-pink-200 flex-1">
+                        <input id="capsule-message" type="text" maxlength="140" placeholder="Your sweet note..."
+                            class="px-3 py-2 rounded-xl border border-pink-200 flex-[2]">
+                        <button id="save-capsule"
+                            class="bg-pink-500 text-white px-4 py-2 rounded-full font-semibold whitespace-nowrap">
+                            Save Note
+                        </button>
+                    </div>
+                    <ul id="capsule-list" class="mt-4 space-y-2"></ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Even More To Do -->
+        <section class="mb-16">
+            <h2 class="text-3xl text-center text-pink-500 mb-6 flex items-center justify-center gap-2">
+                <i class="fas fa-bolt"></i> Even More To Do <i class="fas fa-heart"></i>
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="extra-card rounded-3xl p-5 border border-pink-100 shadow-lg">
+                    <h3 class="text-xl text-pink-500 mb-2">Would You Rather (Couple Edition)</h3>
+                    <p id="wyr-question" class="text-gray-700 min-h-[2.5rem]">Press the button for a cute dilemma.</p>
+                    <button id="new-wyr"
+                        class="mt-3 bg-pink-500 text-white px-4 py-2 rounded-full font-semibold hover:bg-pink-600 transition-colors">
+                        New Question
+                    </button>
+                </div>
+
+                <div class="extra-card rounded-3xl p-5 border border-pink-100 shadow-lg">
+                    <h3 class="text-xl text-pink-500 mb-2">Decision Spinner</h3>
+                    <p id="decision-result" class="text-gray-700 min-h-[2.5rem]">Who does the next cute task?</p>
+                    <button id="spin-decision"
+                        class="mt-3 bg-fuchsia-500 text-white px-4 py-2 rounded-full font-semibold hover:bg-fuchsia-600 transition-colors">
+                        Spin Decision
+                    </button>
+                </div>
+
+                <div class="extra-card rounded-3xl p-5 border border-pink-100 shadow-lg">
+                    <h3 class="text-xl text-pink-500 mb-2">Cuddle Focus Timer</h3>
+                    <p class="text-sm text-gray-600 mb-3">Set minutes and focus only on each other.</p>
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <input id="focus-minutes" type="number" min="1" max="120" value="10"
+                            class="px-3 py-2 rounded-xl border border-pink-200 w-24">
+                        <button id="start-focus"
+                            class="bg-pink-500 text-white px-4 py-2 rounded-full font-semibold">Start</button>
+                        <button id="pause-focus"
+                            class="bg-white text-pink-500 px-4 py-2 rounded-full font-semibold border border-pink-200">Pause</button>
+                        <button id="reset-focus"
+                            class="bg-white text-rose-500 px-4 py-2 rounded-full font-semibold border border-rose-200">Reset</button>
+                    </div>
+                    <p id="focus-time" class="mt-3 text-2xl text-pink-500 font-bold">10:00</p>
+                </div>
+
+                <div class="extra-card rounded-3xl p-5 border border-pink-100 shadow-lg">
+                    <h3 class="text-xl text-pink-500 mb-2">Weekly Couple Goals</h3>
+                    <div class="flex gap-2">
+                        <input id="goal-input" type="text" maxlength="80" placeholder="Add a small goal..."
+                            class="px-3 py-2 rounded-xl border border-pink-200 flex-1">
+                        <button id="add-goal"
+                            class="bg-pink-500 text-white px-4 py-2 rounded-full font-semibold">Add</button>
+                    </div>
+                    <ul id="goal-list" class="mt-3 space-y-2"></ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Couple Bonus Zone -->
+        <section class="mb-16">
+            <h2 class="text-3xl text-center text-pink-500 mb-6 flex items-center justify-center gap-2">
+                <i class="fas fa-gem"></i> Couple Bonus Zone <i class="fas fa-gem"></i>
+            </h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bonus-card rounded-3xl p-5 border border-pink-100 shadow-lg">
+                    <h3 class="text-xl text-pink-500 mb-2">Daily Love Streak</h3>
+                    <p class="text-gray-600 text-sm mb-3">Mark one sweet thing done today and keep your streak alive.</p>
+                    <button id="mark-love-day"
+                        class="bg-pink-500 text-white px-4 py-2 rounded-full font-semibold hover:bg-pink-600 transition-colors">
+                        Mark Today
+                    </button>
+                    <p class="mt-3 text-pink-500 font-semibold">Current streak: <span id="love-streak-count">0</span> days</p>
+                </div>
+
+                <div class="bonus-card rounded-3xl p-5 border border-pink-100 shadow-lg">
+                    <h3 class="text-xl text-pink-500 mb-2">Kiss Coupon Machine</h3>
+                    <p class="text-gray-600 text-sm mb-3">Generate a redeemable cute coupon for your partner.</p>
+                    <button id="generate-coupon"
+                        class="bg-fuchsia-500 text-white px-4 py-2 rounded-full font-semibold hover:bg-fuchsia-600 transition-colors">
+                        Generate Coupon
+                    </button>
+                    <p id="coupon-result" class="mt-3 text-pink-500 font-semibold min-h-[2rem]">Tap to create a coupon.</p>
+                </div>
+
+                <div class="bonus-card rounded-3xl p-5 border border-pink-100 shadow-lg">
+                    <h3 class="text-xl text-pink-500 mb-2">Relationship Quiz</h3>
+                    <p class="text-gray-600 text-sm mb-3">Answer yes/no and see your cute compatibility score.</p>
+                    <div class="flex gap-2">
+                        <button id="quiz-yes"
+                            class="bg-white text-pink-500 px-4 py-2 rounded-full font-semibold border border-pink-200">Yes</button>
+                        <button id="quiz-no"
+                            class="bg-white text-pink-500 px-4 py-2 rounded-full font-semibold border border-pink-200">No</button>
+                    </div>
+                    <p id="quiz-result" class="mt-3 text-pink-500 font-semibold min-h-[2rem]">Start answering to build your score.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Gallery -->
+        <h2 class="text-3xl text-center text-pink-400 mb-8 flex items-center justify-center gap-3">
+            <i class="fas fa-camera-retro"></i> Our Memories <i class="fas fa-camera-retro"></i>
+        </h2>
+        <div class="upload-card max-w-3xl mx-auto rounded-2xl p-4 border border-pink-100 mb-6">
+            <h3 class="text-xl text-pink-500 mb-2">Add More Photos Anytime</h3>
+            <p class="text-sm text-gray-600 mb-3">Upload from your device and they will stay on this browser.</p>
+            <div class="flex flex-wrap items-center gap-2">
+                <input id="photo-upload" type="file" accept="image/*" multiple
+                    class="text-sm text-gray-600 file:mr-3 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-pink-500 file:text-white file:font-semibold hover:file:bg-pink-600">
+                <button id="clear-custom-photos"
+                    class="bg-white text-rose-500 px-4 py-2 rounded-full font-semibold border border-rose-200 hover:bg-rose-50 transition-colors">
+                    Remove Uploaded Photos
+                </button>
+            </div>
+            <p id="upload-status" class="text-sm text-pink-500 mt-2 min-h-[1.25rem]"></p>
+        </div>
+        <div class="mb-6 flex flex-wrap items-center justify-center gap-2">
+            <button id="shuffle-gallery"
+                class="bg-white text-pink-500 px-4 py-2 rounded-full font-semibold border border-pink-200 hover:bg-pink-50 transition-colors">
+                Shuffle Memories
+            </button>
+            <button id="toggle-favorites"
+                class="bg-white text-pink-500 px-4 py-2 rounded-full font-semibold border border-pink-200 hover:bg-pink-50 transition-colors">
+                Show Favorites
+            </button>
+            <button id="start-slideshow"
+                class="bg-pink-500 text-white px-4 py-2 rounded-full font-semibold hover:bg-pink-600 transition-colors">
+                Start Slideshow
+            </button>
+        </div>
+        <p id="gallery-status" class="text-center text-sm text-gray-600 mb-4">
+            0 memories showing
+        </p>
+        <div class="mb-6 image-game-card rounded-2xl p-4 border border-pink-100 max-w-3xl mx-auto">
+            <h3 class="text-xl text-pink-500 mb-1">Memory Favorite Challenge</h3>
+            <p class="text-gray-600 text-sm mb-3">Guess if the shown memory is in your favorites. Keep a streak going!</p>
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+                <button id="start-image-game"
+                    class="bg-fuchsia-500 text-white px-4 py-2 rounded-full font-semibold hover:bg-fuchsia-600 transition-colors">
+                    New Memory
+                </button>
+                <button id="guess-favorite-yes"
+                    class="bg-white text-pink-500 px-4 py-2 rounded-full font-semibold border border-pink-200">
+                    Favorite
+                </button>
+                <button id="guess-favorite-no"
+                    class="bg-white text-pink-500 px-4 py-2 rounded-full font-semibold border border-pink-200">
+                    Not Favorite
+                </button>
+                <span class="text-sm text-gray-600">Streak: <span id="image-game-streak" class="font-bold text-pink-500">0</span></span>
+            </div>
+            <div class="image-game-preview-wrap">
+                <img id="image-game-preview" src="" alt="Memory Challenge Preview" class="image-game-preview hidden">
+            </div>
+            <p id="image-game-result" class="text-pink-500 font-semibold min-h-[1.5rem] mt-2">Press "New Memory" to begin.</p>
+        </div>
+
+        <div id="gallery" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            <!-- Images will be loaded here -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-20 text-center pb-10">
+        <p class="text-gray-400 flex items-center justify-center gap-2">
+            Made with <i class="fas fa-heart text-pink-500 animate-pulse"></i> for us
+        </p>
+        <div class="mt-4 flex justify-center gap-4 text-2xl text-pink-300">
+            <i class="fas fa-paw"></i>
+            <i class="fas fa-fish"></i>
+            <i class="fas fa-cat"></i>
+        </div>
+    </footer>
+
+    <!-- Image Modal -->
+    <div id="modal" class="fixed inset-0 bg-black/90 z-[100] hidden items-center justify-center p-4">
+        <img id="modal-img" src="" alt="Enlarged"
+            class="max-w-full max-h-full rounded-lg shadow-2xl scale-95 transition-transform duration-300">
+        <div class="slideshow-controls">
+            <button id="slide-prev" class="slide-btn" title="Previous">⟵</button>
+            <button id="slide-play-pause" class="slide-btn play" title="Play or Pause">▶</button>
+            <button id="slide-next" class="slide-btn" title="Next">⟶</button>
+            <span id="slide-progress" class="slide-progress">0 / 0</span>
+        </div>
+        <button id="modal-close" class="absolute top-4 right-4 text-white text-4xl">&times;</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
