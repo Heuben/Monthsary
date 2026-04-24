@@ -8,7 +8,8 @@ const images = [
     'IMG_20250817_040750_469.jpg',
     'IMG_20250817_053710_873.jpg',
     'received_836261600939307.jpeg',
-    'IMG_20250725_125103_881.jpg'
+    'IMG_20250725_125103_881.jpg',
+    '1682062205905.jpg',
 ];
 
 const gallery = document.getElementById('gallery');
