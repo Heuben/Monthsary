@@ -10,6 +10,8 @@ const images = [
     'received_836261600939307.jpeg',
     'IMG_20250725_125103_881.jpg',
     '1682062205905.jpg',
+    'IMG_20250817_054139_538.jpg'
+
 ];
 
 const gallery = document.getElementById('gallery');
